@@ -335,127 +335,137 @@
       }
 
       header {
-        height: 110px;
-        padding: 0 15px;
+        height: 110px !important;
+        padding: 0 15px !important;
       }
 
       .logo img {
-        height: 75px;
-        margin-top: 22px;
+        height: 75px !important;
+        margin-top: 22px !important;
       }
 
       .header-nav {
-        margin-top: 25px;
+        margin-top: 25px !important;
       }
 
       .nav-item strong {
-        font-size: 1em;
+        font-size: 1em !important;
       }
 
       .contact-details {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: auto;
-        min-width: 280px;
-        max-width: 90vw;
-        font-size: 0.9em;
-        background: rgba(0, 0, 0, 0.98);
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+        position: fixed !important;
+        top: 120px !important;
+        right: 15px !important;
+        left: 15px !important;
+        min-width: auto !important;
+        max-width: none !important;
+        font-size: 0.9em !important;
+        background: rgba(0, 0, 0, 0.98) !important;
+        border: 2px solid rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8) !important;
+        text-align: center !important;
       }
 
       .contact-details a {
-        color: #ffffff;
-        font-weight: 600;
+        color: #ffffff !important;
+        font-weight: 600 !important;
       }
 
-      /* Keep bubbles horizontal on mobile */
+      /* FORCE bubbles horizontal on mobile */
       .floating-container {
-        flex-direction: row;
-        justify-content: space-around;
-        gap: 15px;
-        padding: 0 10px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        gap: 15px !important;
+        padding: 0 10px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: visible !important;
       }
 
       .floating-bubble {
-        width: 120px;
-        height: 120px;
-        flex-shrink: 0;
-        margin: 0 5px;
+        width: 120px !important;
+        height: 120px !important;
+        flex-shrink: 0 !important;
+        margin: 0 5px !important;
       }
 
       .bubble-title {
-        font-size: 0.95em;
-        font-weight: 800;
-        color: #000000;
-        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
-        letter-spacing: 0.3px;
+        font-size: 0.95em !important;
+        font-weight: 900 !important;
+        color: #000000 !important;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
+        letter-spacing: 0.3px !important;
       }
 
       .hero {
-        min-height: 500px;
+        min-height: 500px !important;
       }
 
       .hero-text h1 {
-        font-size: 2.2em;
-        line-height: 1.1;
+        font-size: 2.2em !important;
+        line-height: 1.1 !important;
       }
 
       /* Prevent zoom on input focus */
       input, select, textarea {
-        font-size: 16px;
+        font-size: 16px !important;
       }
     }
 
     /* Very small screens */
     @media (max-width: 480px) {
       header {
-        height: 100px;
-        padding: 0 12px;
+        height: 100px !important;
+        padding: 0 12px !important;
       }
 
       .logo img {
-        height: 65px;
-        margin-top: 20px;
+        height: 65px !important;
+        margin-top: 20px !important;
       }
 
       .header-nav {
-        margin-top: 22px;
+        margin-top: 22px !important;
       }
 
       .nav-item strong {
-        font-size: 0.9em;
+        font-size: 0.9em !important;
       }
 
       .contact-details {
-        min-width: 260px;
-        font-size: 0.85em;
-        padding: 12px;
+        position: fixed !important;
+        top: 110px !important;
+        right: 10px !important;
+        left: 10px !important;
+        min-width: auto !important;
+        font-size: 0.85em !important;
+        padding: 12px !important;
+        text-align: center !important;
       }
 
       .floating-container {
-        gap: 10px;
-        padding: 0 5px;
+        gap: 10px !important;
+        padding: 0 5px !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        flex-wrap: nowrap !important;
       }
 
       .floating-bubble {
-        width: 110px;
-        height: 110px;
-        margin: 0 3px;
+        width: 110px !important;
+        height: 110px !important;
+        margin: 0 3px !important;
+        flex-shrink: 0 !important;
       }
 
       .bubble-title {
-        font-size: 0.85em;
-        font-weight: 900;
-        color: #000000;
-        text-shadow: 0 1px 4px rgba(255, 255, 255, 1);
+        font-size: 0.85em !important;
+        font-weight: 900 !important;
+        color: #000000 !important;
+        text-shadow: 0 2px 5px rgba(255, 255, 255, 1) !important;
       }
 
       .hero-text h1 {
-        font-size: 1.8em;
+        font-size: 1.8em !important;
       }
     }
 
@@ -471,25 +481,28 @@
     /* Landscape orientation on mobile */
     @media (max-width: 768px) and (orientation: landscape) {
       .hero {
-        height: 100vh;
-        min-height: 400px;
+        height: 100vh !important;
+        min-height: 400px !important;
       }
 
       .floating-container {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: nowrap;
-        gap: 20px;
+        flex-direction: row !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+        gap: 20px !important;
       }
 
       .floating-bubble {
-        width: 120px;
-        height: 120px;
-        margin: 0 8px;
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 8px !important;
       }
 
       .bubble-title {
-        font-size: 0.9em;
+        font-size: 0.9em !important;
+        color: #000000 !important;
+        font-weight: 900 !important;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
       }
     }
 
