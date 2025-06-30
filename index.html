@@ -162,7 +162,7 @@
 
     /* Hero Section */
     .hero {
-      background-image: url('nadi_background.jpg');
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: scroll;
@@ -246,7 +246,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url('nadi_small_bggg.jpg');
+      background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: scroll;
@@ -335,150 +335,173 @@
       }
 
       header {
-        height: 110px !important;
-        padding: 0 15px !important;
+        height: 110px;
+        padding: 0 15px;
       }
 
       .logo img {
-        height: 75px !important;
-        margin-top: 22px !important;
+        height: 75px;
+        margin-top: 22px;
       }
 
       .header-nav {
-        margin-top: 25px !important;
+        margin-top: 25px;
       }
 
       .nav-item strong {
-        font-size: 1em !important;
+        font-size: 1em;
       }
 
+      /* FIXED: Proper mobile contact details positioning */
       .contact-details {
-        position: fixed !important;
-        top: 120px !important;
-        right: 15px !important;
-        left: 15px !important;
-        min-width: auto !important;
-        max-width: none !important;
-        font-size: 0.9em !important;
-        background: rgba(0, 0, 0, 0.98) !important;
-        border: 2px solid rgba(255, 255, 255, 0.4) !important;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8) !important;
-        text-align: center !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
+        position: absolute;
+        top: 35px;
+        right: 0;
+        left: auto;
+        min-width: 280px;
+        max-width: 300px;
+        font-size: 0.9em;
+        background: rgba(0, 0, 0, 0.98);
+        border: 2px solid rgba(242, 201, 76, 0.8);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+        text-align: left;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 18px;
+        border-radius: 12px;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
       }
 
       .contact-details a {
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        word-break: break-all !important;
+        color: #ffffff;
+        font-weight: 600;
+        word-break: break-word;
+        display: block;
+        margin: 8px 0;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .contact-details a:last-child {
+        border-bottom: none;
+      }
+
+      .contact-details a:hover,
+      .contact-details a:active {
+        color: #f2c94c;
+        transform: translateX(5px);
       }
 
       /* FORCE bubbles horizontal on mobile */
       .floating-container {
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        gap: 15px !important;
-        padding: 0 10px !important;
-        flex-wrap: nowrap !important;
-        overflow-x: visible !important;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 15px;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        overflow-x: visible;
       }
 
       .floating-bubble {
-        width: 120px !important;
-        height: 120px !important;
-        flex-shrink: 0 !important;
-        margin: 0 5px !important;
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        margin: 0 5px;
       }
 
       .bubble-title {
-        font-size: 0.95em !important;
-        font-weight: 600 !important;
-        color: rgba(0, 0, 0, 0.75) !important;
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
-        letter-spacing: 0.3px !important;
+        font-size: 0.95em;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.75);
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
+        letter-spacing: 0.3px;
       }
 
       .hero {
-        min-height: 500px !important;
+        min-height: 500px;
       }
 
       .hero-text h1 {
-        font-size: 2.2em !important;
-        line-height: 1.1 !important;
-        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 2.2em;
+        line-height: 1.1;
+        color: rgba(255, 255, 255, 0.9);
       }
 
       /* Prevent zoom on input focus */
       input, select, textarea {
-        font-size: 16px !important;
+        font-size: 16px;
       }
     }
 
     /* Very small screens */
     @media (max-width: 480px) {
       header {
-        height: 100px !important;
-        padding: 0 12px !important;
+        height: 100px;
+        padding: 0 12px;
       }
 
       .logo img {
-        height: 65px !important;
-        margin-top: 20px !important;
+        height: 65px;
+        margin-top: 20px;
       }
 
       .header-nav {
-        margin-top: 22px !important;
+        margin-top: 22px;
       }
 
       .nav-item strong {
-        font-size: 0.9em !important;
+        font-size: 0.9em;
       }
 
+      /* FIXED: Better positioning for very small screens */
       .contact-details {
-        position: fixed !important;
-        top: 110px !important;
-        right: 10px !important;
-        left: 10px !important;
-        min-width: auto !important;
-        font-size: 0.85em !important;
-        padding: 12px !important;
-        text-align: center !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        left: auto;
+        min-width: 260px;
+        max-width: 280px;
+        font-size: 0.85em;
+        padding: 15px;
+        text-align: left;
+        white-space: normal;
+        word-wrap: break-word;
+        border-radius: 10px;
       }
 
       .contact-details a {
-        word-break: break-all !important;
-        display: block !important;
-        margin: 5px 0 !important;
+        word-break: break-word;
+        display: block;
+        margin: 6px 0;
+        padding: 4px 0;
       }
 
       .floating-container {
-        gap: 10px !important;
-        padding: 0 5px !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        flex-wrap: nowrap !important;
+        gap: 10px;
+        padding: 0 5px;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: nowrap;
       }
 
       .floating-bubble {
-        width: 110px !important;
-        height: 110px !important;
-        margin: 0 3px !important;
-        flex-shrink: 0 !important;
+        width: 110px;
+        height: 110px;
+        margin: 0 3px;
+        flex-shrink: 0;
       }
 
       .bubble-title {
-        font-size: 0.85em !important;
-        font-weight: 600 !important;
-        color: rgba(0, 0, 0, 0.8) !important;
-        text-shadow: 0 2px 5px rgba(255, 255, 255, 1) !important;
+        font-size: 0.85em;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+        text-shadow: 0 2px 5px rgba(255, 255, 255, 1);
       }
 
       .hero-text h1 {
-        font-size: 1.8em !important;
-        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.8em;
+        color: rgba(255, 255, 255, 0.9);
       }
     }
 
@@ -494,28 +517,36 @@
     /* Landscape orientation on mobile */
     @media (max-width: 768px) and (orientation: landscape) {
       .hero {
-        height: 100vh !important;
-        min-height: 400px !important;
+        height: 100vh;
+        min-height: 400px;
       }
 
       .floating-container {
-        flex-direction: row !important;
-        justify-content: center !important;
-        flex-wrap: nowrap !important;
-        gap: 20px !important;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 20px;
       }
 
       .floating-bubble {
-        width: 120px !important;
-        height: 120px !important;
-        margin: 0 8px !important;
+        width: 120px;
+        height: 120px;
+        margin: 0 8px;
       }
 
       .bubble-title {
-        font-size: 0.9em !important;
-        color: rgba(0, 0, 0, 0.75) !important;
-        font-weight: 600 !important;
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
+        font-size: 0.9em;
+        color: rgba(0, 0, 0, 0.75);
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
+      }
+
+      /* Landscape contact details positioning */
+      .contact-details {
+        top: 32px;
+        right: 0;
+        min-width: 250px;
+        max-width: 270px;
       }
     }
 
@@ -559,14 +590,14 @@
   <!-- Splash Screen -->
   <div id="splash">
     <div class="splash-logo">
-      <img src="nadi_homestay_logo.png" alt="Logo" />
+      <img src="https://via.placeholder.com/200x200/f2c94c/000000?text=LOGO" alt="Logo" />
     </div>
   </div>
 
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="nadi_homestay_logo.png" alt="Nadi Homestay Logo">
+      <img src="https://via.placeholder.com/100x100/f2c94c/000000?text=NADI" alt="Nadi Homestay Logo">
     </div>
     <div class="header-nav">
       <div class="nav-item" onclick="toggleContact()" tabindex="0" role="button" aria-label="Toggle contact information">
@@ -583,7 +614,7 @@
   <section class="hero">
     <div class="overlay"></div>
     <div class="hero-text">
-      <img src="my_logo.png" alt="Hero Logo" class="hero-logo">
+      <img src="https://via.placeholder.com/120x120/f2c94c/000000?text=HERO" alt="Hero Logo" class="hero-logo">
       <h1>YOU DON'T JUST STAY HERE,<br>YOU ENJOY YOUR STAY</h1>
     </div>
   </section>
