@@ -162,7 +162,7 @@
 
     /* Hero Section */
     .hero {
-      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-image: url('nadi_background.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: scroll;
@@ -246,7 +246,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-image: url('nadi_small_bggg.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: scroll;
@@ -410,12 +410,19 @@
         margin: 0 5px;
       }
 
+      /* FIXED: Enhanced mobile bubble title visibility */
       .bubble-title {
-        font-size: 0.95em;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.75);
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
-        letter-spacing: 0.3px;
+        font-size: 1em;
+        font-weight: 900;
+        color: #000000;
+        text-shadow: 
+          0 0 10px rgba(255, 255, 255, 1),
+          0 0 20px rgba(255, 255, 255, 0.8),
+          2px 2px 4px rgba(255, 255, 255, 0.9),
+          -2px -2px 4px rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
       }
 
       .hero {
@@ -492,11 +499,19 @@
         flex-shrink: 0;
       }
 
+      /* FIXED: Extra bold and visible text for very small screens */
       .bubble-title {
-        font-size: 0.85em;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.8);
-        text-shadow: 0 2px 5px rgba(255, 255, 255, 1);
+        font-size: 0.9em;
+        font-weight: 900;
+        color: #000000;
+        text-shadow: 
+          0 0 15px rgba(255, 255, 255, 1),
+          0 0 25px rgba(255, 255, 255, 0.8),
+          3px 3px 6px rgba(255, 255, 255, 0.9),
+          -3px -3px 6px rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.3px;
+        line-height: 1.1;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
       }
 
       .hero-text h1 {
@@ -534,11 +549,17 @@
         margin: 0 8px;
       }
 
+      /* FIXED: Enhanced landscape mode visibility */
       .bubble-title {
-        font-size: 0.9em;
-        color: rgba(0, 0, 0, 0.75);
-        font-weight: 600;
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
+        font-size: 0.95em;
+        color: #000000;
+        font-weight: 900;
+        text-shadow: 
+          0 0 12px rgba(255, 255, 255, 1),
+          0 0 20px rgba(255, 255, 255, 0.8),
+          2px 2px 4px rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.4px;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
       }
 
       /* Landscape contact details positioning */
@@ -590,14 +611,14 @@
   <!-- Splash Screen -->
   <div id="splash">
     <div class="splash-logo">
-      <img src="https://via.placeholder.com/200x200/f2c94c/000000?text=LOGO" alt="Logo" />
+      <img src="nadi_homestay_logo.png" alt="Logo" />
     </div>
   </div>
 
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="https://via.placeholder.com/100x100/f2c94c/000000?text=NADI" alt="Nadi Homestay Logo">
+      <img src="nadi_homestay_logo.png" alt="Nadi Homestay Logo">
     </div>
     <div class="header-nav">
       <div class="nav-item" onclick="toggleContact()" tabindex="0" role="button" aria-label="Toggle contact information">
@@ -614,7 +635,7 @@
   <section class="hero">
     <div class="overlay"></div>
     <div class="hero-text">
-      <img src="https://via.placeholder.com/120x120/f2c94c/000000?text=HERO" alt="Hero Logo" class="hero-logo">
+      <img src="my_logo.png" alt="Hero Logo" class="hero-logo">
       <h1>YOU DON'T JUST STAY HERE,<br>YOU ENJOY YOUR STAY</h1>
     </div>
   </section>
