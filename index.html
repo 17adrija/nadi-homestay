@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
   <title>Nadi Homestay</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
   <style>
-    /* --- Styles unchanged except nav related ones cleaned --- */
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body, html {
       margin: 0;
       padding: 0;
@@ -15,8 +20,12 @@
       color: white;
       overflow-x: hidden;
       background-color: #000;
+      height: 100%;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
     }
 
+    /* Splash Screen */
     #splash {
       position: fixed;
       top: 0;
@@ -32,7 +41,7 @@
     }
 
     .splash-logo img {
-      width: 200px;
+      width: min(200px, 50vw);
       height: auto;
       animation: zoomSplash 2.5s ease-in-out forwards;
     }
@@ -59,12 +68,13 @@
       }
     }
 
+    /* Header */
     header {
       height: 120px;
       background: rgba(0, 0, 0, 0.15);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      padding: 0 40px;
+      padding: 0 clamp(20px, 4vw, 40px);
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -76,17 +86,20 @@
     }
 
     .logo img {
-      height: 100px;
-      margin-top: 35px;
+      height: clamp(80px, 15vw, 100px);
+      margin-top: clamp(25px, 5vw, 35px);
       z-index: 1001;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
     }
 
     .header-nav {
-      margin-top: 40px;
+      margin-top: clamp(30px, 6vw, 40px);
       display: flex;
-      gap: 30px;
+      gap: clamp(15px, 4vw, 30px);
       text-align: right;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      position: relative;
     }
 
     .nav-item {
@@ -95,52 +108,66 @@
       position: relative;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .nav-item:hover {
+    .nav-item:hover,
+    .nav-item:active {
       color: #f2c94c;
       transform: translateY(-2px);
     }
 
     .nav-item strong {
-      font-size: 1.1em;
+      font-size: clamp(0.9em, 2.5vw, 1.1em);
       font-weight: 700;
       color: #f2c94c;
+      white-space: nowrap;
     }
 
     .contact-details {
       display: none;
       margin-top: 8px;
-      font-size: 0.95em;
+      font-size: clamp(0.8em, 2vw, 0.95em);
       transition: all 0.3s ease;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       padding: 15px;
       border-radius: 10px;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
       position: absolute;
       top: 100%;
       right: 0;
-      min-width: 200px;
+      min-width: 250px;
       z-index: 1500;
+      white-space: nowrap;
     }
 
     .contact-details a {
-      color: white;
+      color: #ffffff;
       text-decoration: none;
+      display: inline-block;
+      padding: 2px 0;
+      font-weight: 500;
     }
 
-    .contact-details a:hover {
+    .contact-details a:hover,
+    .contact-details a:active {
       text-decoration: underline;
+      color: #f2c94c;
     }
 
+    /* Hero Section */
     .hero {
       background-image: url('nadi_background.jpg');
       background-size: cover;
       background-position: center;
+      background-attachment: scroll;
       height: 100vh;
+      min-height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -160,11 +187,12 @@
       position: relative;
       text-align: center;
       z-index: 2;
+      padding: 0 20px;
     }
 
     .hero-text h1 {
       font-family: 'Anton', sans-serif;
-      font-size: 3.5em;
+      font-size: clamp(2em, 6vw, 3.5em);
       line-height: 1.2;
       max-width: 700px;
       margin: auto;
@@ -181,7 +209,7 @@
     }
 
     .hero-logo {
-      width: 120px;
+      width: clamp(80px, 20vw, 120px);
       margin-bottom: 20px;
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
       animation: fadeInLogo 1.2s ease-in-out;
@@ -198,8 +226,9 @@
       }
     }
 
+    /* Floating Section */
     .floating-section {
-      padding: 80px 20px;
+      padding: clamp(40px, 8vw, 80px) 20px;
       justify-content: center;
       align-items: center;
       min-height: 60vh;
@@ -220,7 +249,7 @@
       background-image: url('nadi_small_bggg.jpg');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
       filter: blur(2px);
       z-index: 0;
     }
@@ -238,20 +267,22 @@
 
     .floating-container {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
       width: 100%;
       max-width: 1200px;
       position: relative;
       z-index: 10;
+      flex-wrap: wrap;
+      gap: clamp(20px, 4vw, 40px);
     }
 
     .floating-bubble {
-      background: linear-gradient(135deg, rgba(242, 201, 76, 0.9), rgba(255, 255, 255, 0.8));
+      background: linear-gradient(135deg, rgba(242, 201, 76, 0.95), rgba(255, 255, 255, 0.9));
       border: 3px solid rgba(242, 201, 76, 1);
       border-radius: 50%;
-      width: 220px;
-      height: 220px;
+      width: clamp(140px, 22vw, 200px);
+      height: clamp(140px, 22vw, 200px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -266,19 +297,30 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
       position: relative;
       z-index: 15;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .floating-bubble:hover {
+    .floating-bubble:hover,
+    .floating-bubble:active {
       transform: translateY(-15px) scale(1.1);
       background: linear-gradient(135deg, rgba(242, 201, 76, 0.8), rgba(255, 255, 255, 0.2));
       border-color: #f2c94c;
     }
 
+    .floating-bubble:active {
+      transform: translateY(-10px) scale(1.05);
+    }
+
     .bubble-title {
-      font-size: 1.8em;
+      font-size: clamp(1em, 2.5vw, 1.4em);
       font-weight: 700;
-      color: #1a1a1a;
+      color: #000000;
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 0 10px;
+      letter-spacing: 0.5px;
     }
 
     @keyframes float {
@@ -286,41 +328,203 @@
       50% { transform: translateY(-20px); }
     }
 
+    /* Mobile-specific optimizations */
     @media (max-width: 768px) {
-      .floating-container {
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .floating-bubble {
-        width: 180px;
-        height: 180px;
-      }
-
-      .bubble-title {
-        font-size: 1.4em;
+      body {
+        -webkit-overflow-scrolling: touch;
       }
 
       header {
-        padding: 0 20px;
+        height: 110px;
+        padding: 0 15px;
+      }
+
+      .logo img {
+        height: 75px;
+        margin-top: 22px;
       }
 
       .header-nav {
-        flex-direction: column;
-        gap: 15px;
+        margin-top: 25px;
+      }
+
+      .nav-item strong {
+        font-size: 1em;
       }
 
       .contact-details {
-        position: fixed;
-        top: 120px;
-        right: 20px;
-        left: 20px;
-        min-width: auto;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        min-width: 280px;
+        max-width: 90vw;
+        font-size: 0.9em;
+        background: rgba(0, 0, 0, 0.98);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+      }
+
+      .contact-details a {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      /* Keep bubbles horizontal on mobile */
+      .floating-container {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 15px;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+
+      .floating-bubble {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        margin: 0 5px;
+      }
+
+      .bubble-title {
+        font-size: 0.95em;
+        font-weight: 800;
+        color: #000000;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.3px;
+      }
+
+      .hero {
+        min-height: 500px;
       }
 
       .hero-text h1 {
-        font-size: 2.5em;
+        font-size: 2.2em;
+        line-height: 1.1;
       }
+
+      /* Prevent zoom on input focus */
+      input, select, textarea {
+        font-size: 16px;
+      }
+    }
+
+    /* Very small screens */
+    @media (max-width: 480px) {
+      header {
+        height: 100px;
+        padding: 0 12px;
+      }
+
+      .logo img {
+        height: 65px;
+        margin-top: 20px;
+      }
+
+      .header-nav {
+        margin-top: 22px;
+      }
+
+      .nav-item strong {
+        font-size: 0.9em;
+      }
+
+      .contact-details {
+        min-width: 260px;
+        font-size: 0.85em;
+        padding: 12px;
+      }
+
+      .floating-container {
+        gap: 10px;
+        padding: 0 5px;
+      }
+
+      .floating-bubble {
+        width: 110px;
+        height: 110px;
+        margin: 0 3px;
+      }
+
+      .bubble-title {
+        font-size: 0.85em;
+        font-weight: 900;
+        color: #000000;
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 1);
+      }
+
+      .hero-text h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    /* High DPI displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-logo,
+      .logo img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+    }
+
+    /* Landscape orientation on mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        height: 100vh;
+        min-height: 400px;
+      }
+
+      .floating-container {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 20px;
+      }
+
+      .floating-bubble {
+        width: 120px;
+        height: 120px;
+        margin: 0 8px;
+      }
+
+      .bubble-title {
+        font-size: 0.9em;
+      }
+    }
+
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+      .floating-bubble {
+        animation: none;
+      }
+      
+      .hero-logo {
+        animation: none;
+      }
+      
+      #splash .splash-logo img {
+        animation: none;
+      }
+      
+      #splash {
+        animation: none;
+        display: none;
+      }
+    }
+
+    /* Focus styles for keyboard navigation */
+    .nav-item:focus,
+    .floating-bubble:focus {
+      outline: 2px solid #f2c94c;
+      outline-offset: 4px;
+    }
+
+    /* Improve touch targets */
+    .nav-item,
+    .floating-bubble {
+      min-height: 44px;
+      min-width: 44px;
     }
   </style>
 </head>
@@ -333,17 +537,17 @@
     </div>
   </div>
 
-  <!-- Header without Services -->
+  <!-- Header -->
   <header>
     <div class="logo">
       <img src="nadi_homestay_logo.png" alt="Nadi Homestay Logo">
     </div>
     <div class="header-nav">
-      <div class="nav-item" onclick="toggleContact()">
+      <div class="nav-item" onclick="toggleContact()" tabindex="0" role="button" aria-label="Toggle contact information">
         <strong>Owner's Contact</strong>
-        <div class="contact-details" id="contactInfo">
-          📞 <a href="tel:+918123955728">+91-8123955728</a><br>
-          📧 <a href="mailto:yournadihomestay@gmail.com">yournadihomestay@gmail.com</a>
+        <div class="contact-details" id="contactInfo" role="menu">
+          📞 <a href="tel:+918123955728" role="menuitem">+91-8123955728</a><br>
+          📧 <a href="mailto:yournadihomestay@gmail.com" role="menuitem">yournadihomestay@gmail.com</a>
         </div>
       </div>
     </div>
@@ -361,46 +565,135 @@
   <!-- Floating Bubbles -->
   <section class="floating-section">
     <div class="floating-container">
-      <div class="floating-bubble" onclick="handleBubbleClick('homestays')">
+      <div class="floating-bubble" onclick="handleBubbleClick('homestays')" tabindex="0" role="button" aria-label="View homestays">
         <div class="bubble-title">HOMESTAYS</div>
       </div>
-      <div class="floating-bubble" onclick="handleBubbleClick('hotels')">
+      <div class="floating-bubble" onclick="handleBubbleClick('hotels')" tabindex="0" role="button" aria-label="View hotels">
         <div class="bubble-title">HOTELS</div>
       </div>
-      <div class="floating-bubble" onclick="handleBubbleClick('events')">
+      <div class="floating-bubble" onclick="handleBubbleClick('events')" tabindex="0" role="button" aria-label="View events">
         <div class="bubble-title">EVENTS</div>
       </div>
     </div>
   </section>
 
   <script>
+    // Enhanced touch and click handling
+    let touchStartTime = 0;
+    
     function toggleContact() {
       const details = document.getElementById('contactInfo');
-      details.style.display = details.style.display === 'block' ? 'none' : 'block';
+      const isVisible = details.style.display === 'block';
+      details.style.display = isVisible ? 'none' : 'block';
+      
+      // Add haptic feedback on supported devices
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
     }
 
     function handleBubbleClick(type) {
-  if (type === 'homestays') {
-    window.location.href = 'homestays.html';
-  } else if (type === 'hotels') {
-    window.location.href = 'hotels.html'; // (Create this later if needed)
-  } else if (type === 'events') {
-    window.location.href = 'events.html'; // (Create this later if needed)
-  }
-}
+      // Add haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
+      }
+      
+      // Prevent double-tap zoom
+      event.preventDefault();
+      
+      if (type === 'homestays') {
+        window.location.href = 'homestays.html';
+      } else if (type === 'hotels') {
+        window.location.href = 'hotels.html';
+      } else if (type === 'events') {
+        window.location.href = 'events.html';
+      }
+    }
 
-    
+    // Enhanced event listeners for better mobile support
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add keyboard support for interactive elements
+      document.querySelectorAll('[tabindex="0"]').forEach(element => {
+        element.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            element.click();
+          }
+        });
+      });
 
-    // Close contact info if clicking outside
+      // Improved touch handling for bubbles
+      document.querySelectorAll('.floating-bubble').forEach(bubble => {
+        bubble.addEventListener('touchstart', function(e) {
+          touchStartTime = Date.now();
+          this.style.transform = 'translateY(-10px) scale(1.05)';
+        }, { passive: true });
+
+        bubble.addEventListener('touchend', function(e) {
+          const touchDuration = Date.now() - touchStartTime;
+          if (touchDuration < 500) { // Valid tap
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 150);
+          }
+        }, { passive: true });
+
+        bubble.addEventListener('touchcancel', function(e) {
+          this.style.transform = '';
+        }, { passive: true });
+      });
+    });
+
+    // Close contact info when clicking outside
     document.addEventListener('click', function(event) {
       const contactDetails = document.getElementById('contactInfo');
       const headerNav = document.querySelector('.header-nav');
+      
       if (!headerNav.contains(event.target)) {
         if (contactDetails.style.display === 'block') {
           contactDetails.style.display = 'none';
         }
       }
     });
+
+    // Handle orientation changes
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 100);
+    });
+
+    // Prevent zoom on double tap for specific elements
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    // Optimize performance on scroll
+    let ticking = false;
+    function updateOnScroll() {
+      // Add any scroll-based animations here if needed
+      ticking = false;
+    }
+
+    document.addEventListener('scroll', function(e) {
+      if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Service Worker registration for PWA capabilities (optional)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        // Uncomment when you have a service worker
+        // navigator.serviceWorker.register('/sw.js');
+      });
+    }
   </script>
 
 </body>
