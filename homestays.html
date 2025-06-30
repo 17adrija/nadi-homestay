@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nadi Homestays</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0f0f0f 100%);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header with logo on left */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 30px 50px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .brand-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d4af37 0%, #f2c94c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-controls {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .previous-btn {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #6366f1;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .previous-btn:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+      border-color: rgba(99, 102, 241, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+    }
+
+    .nav-contact {
+      position: relative;
+    }
+
+    .contact-btn {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(242, 201, 76, 0.1) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #d4af37;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .contact-btn:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(242, 201, 76, 0.2) 100%);
+      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .contact-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 10px;
+      background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      min-width: 280px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 200;
+    }
+
+    .contact-dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d4af37;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 8px 0;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      color: #d4af37;
+      flex-shrink: 0;
+    }
+
+    .contact-text {
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .phone-icon {
+      background: #e91e63;
+      border-radius: 50%;
+      padding: 3px;
+    }
+
+    .email-icon {
+      background: #2196f3;
+      border-radius: 3px;
+      padding: 3px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .homestay {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .homestay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #f2c94c, #d4af37);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .homestay:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .homestay:hover::before {
+      opacity: 1;
+    }
+
+    .homestay-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .homestay-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .homestay-location {
+      font-size: 0.95rem;
+      color: #d4af37;
+      font-weight: 500;
+    }
+
+    .homestay-pricing {
+      text-align: right;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(242, 201, 76, 0.1) 100%);
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .price-label {
+      font-size: 0.85rem;
+      color: #d4af37;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .price-value {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .photo-strip {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #d4af37 transparent;
+    }
+
+    .photo-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .photo-strip::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .photo-strip::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #d4af37, #f2c94c);
+      border-radius: 3px;
+    }
+
+    .photo-box {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .photo-box::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .photo-box:hover {
+      transform: scale(1.05);
+      border-color: rgba(212, 175, 55, 0.4);
+      color: #d4af37;
+    }
+
+    .photo-box:hover::before {
+      width: 100px;
+      height: 100px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-content {
+      position: relative;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+    }
+
+    .modal-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      animation: modalZoom 0.3s ease-out;
+    }
+
+    @keyframes modalZoom {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #ffffff;
+      font-size: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+      transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+    }
+
+    .close:hover {
+      background: rgba(212, 175, 55, 0.3);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-controls {
+        margin-left: 0;
+        align-self: stretch;
+        justify-content: space-between;
+      }
+
+      .brand-text {
+        font-size: 22px;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .container {
+        padding: 25px;
+        gap: 25px;
+      }
+
+      .homestay {
+        padding: 25px;
+      }
+
+      .homestay-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .homestay-pricing {
+        align-self: stretch;
+        text-align: center;
+      }
+
+      .photo-box {
+        width: 120px;
+        height: 120px;
+      }
+
+      .close {
+        top: 20px;
+        right: 25px;
+        font-size: 40px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-container">
+      <div class="logo">
+        <img src="my_logo.png" alt="Nadi Homestays Logo" />
+      </div>
+      <div class="brand-text">Nadi Homestays</div>
+    </div>
+    
+    <div class="nav-controls">
+      <a href="main.html" class="previous-btn">
+        <span>←</span>
+        <span>Previous</span>
+      </a>
+      
+      <div class="nav-contact">
+        <button class="contact-btn" onclick="toggleContact()">Owner's Contact</button>
+        <div class="contact-dropdown" id="contactDropdown">
+          <div class="contact-title">Owner's Contact</div>
+          <div class="contact-item">
+            <div class="contact-icon phone-icon">📞</div>
+            <div class="contact-text">+91-8123955728</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon email-icon">✉️</div>
+            <div class="contact-text">yournadihomestay@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- 1 -->
+    <div class="homestay">
+      <div class="homestay-header">
+        <div>
+          <div class="homestay-title">Uzan Bazar</div>
+          <div class="homestay-location">3 BHK</div>
+        </div>
+        <div class="homestay-pricing">
+          <div class="price-label">Price : </div>
+          <div class="price-value">₹4,800</div>
+        </div>
+      </div>
+      <div class="photo-strip">
+        <div class="photo-box" onclick="openModal('nadi_ub1.jpg')"><img src="nadi_ub1.jpg" alt="Uzan Bazar Photo 1"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub2.jpg')"><img src="nadi_ub2.jpg" alt="Uzan Bazar Photo 2"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub3.jpg')"><img src="nadi_ub3.jpg" alt="Uzan Bazar Photo 3"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub4.jpg')"><img src="nadi_ub4.jpg" alt="Uzan Bazar Photo 4"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub5.jpg')"><img src="nadi_ub5.jpg" alt="Uzan Bazar Photo 5"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub6.jpg')"><img src="nadi_ub6.jpg" alt="Uzan Bazar Photo 6"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub7.jpg')"><img src="nadi_ub7.jpg" alt="Uzan Bazar Photo 7"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub8.jpg')"><img src="nadi_ub8.jpg" alt="Uzan Bazar Photo 8"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub9.jpg')"><img src="nadi_ub9.jpg" alt="Uzan Bazar Photo 9"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub10.jpg')"><img src="nadi_ub10.jpg" alt="Uzan Bazar Photo 10"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub11.jpg')"><img src="nadi_ub11.jpg" alt="Uzan Bazar Photo 11"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub12.jpg')"><img src="nadi_ub12.jpg" alt="Uzan Bazar Photo 12"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub13.jpg')"><img src="nadi_ub13.jpg" alt="Uzan Bazar Photo 13"></div>
+        <div class="photo-box" onclick="openModal('nadi_ub14.jpg')"><img src="nadi_ub14.jpg" alt="Uzan Bazar Photo 14"></div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="homestay">
+      <div class="homestay-header">
+        <div>
+          <div class="homestay-title">Six Mile</div>
+          <div class="homestay-location">2 BHK</div>
+        </div>
+        <div class="homestay-pricing">
+          <div class="price-label">Price :</div>
+          <div class="price-value">₹2,800</div>
+        </div>
+      </div>
+      <div class="photo-strip">
+        <div class="photo-box" onclick="openModal('nadi_sixmile1.jpg')"><img src="nadi_sixmile1.jpg" alt="Six Mile Photo 1"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile2.jpg')"><img src="nadi_sixmile2.jpg" alt="Six Mile Photo 2"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile3.jpg')"><img src="nadi_sixmile3.jpg" alt="Six Mile Photo 3"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile4.jpg')"><img src="nadi_sixmile4.jpg" alt="Six Mile Photo 4"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile5.jpg')"><img src="nadi_sixmile5.jpg" alt="Six Mile Photo 5"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile6.jpg')"><img src="nadi_sixmile6.jpg" alt="Six Mile Photo 6"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile7.jpg')"><img src="nadi_sixmile7.jpg" alt="Six Mile Photo 7"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile8.jpg')"><img src="nadi_sixmile8.jpg" alt="Six Mile Photo 8"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile9.jpg')"><img src="nadi_sixmile9.jpg" alt="Six Mile Photo 9"></div>
+        <div class="photo-box" onclick="openModal('nadi_sixmile10.jpg')"><img src="nadi_sixmile10.jpg" alt="Six Mile Photo 10"></div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="homestay">
+      <div class="homestay-header">
+        <div>
+          <div class="homestay-title">Kahilipara</div>
+          <div class="homestay-location">1 BHK & 2 BHK</div>
+        </div>
+        <div class="homestay-pricing">
+          <div class="price-label">Price :</div>
+          <div class="price-value">1 BHK - ₹1,800</div>
+          <div class="price-value">2 BHK - ₹2,400</div>
+        </div>
+      </div>
+      <div class="photo-strip">
+        <div class="photo-box" onclick="openModal('nadi_kahilipara1.jpg')"><img src="nadi_kahilipara1.jpg" alt="Kahilipara Photo 1"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara2.jpg')"><img src="nadi_kahilipara2.jpg" alt="Kahilipara Photo 2"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara3.jpg')"><img src="nadi_kahilipara3.jpg" alt="Kahilipara Photo 3"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara4.jpg')"><img src="nadi_kahilipara4.jpg" alt="Kahilipara Photo 4"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara5.jpg')"><img src="nadi_kahilipara5.jpg" alt="Kahilipara Photo 5"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara6.jpg')"><img src="nadi_kahilipara6.jpg" alt="Kahilipara Photo 6"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara7.jpg')"><img src="nadi_kahilipara7.jpg" alt="Kahilipara Photo 7"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara8.jpg')"><img src="nadi_kahilipara8.jpg" alt="Kahilipara Photo 8"></div>
+        <div class="photo-box" onclick="openModal('nadi_kahilipara9.jpg')"><img src="nadi_kahilipara9.jpg" alt="Kahilipara Photo 9"></div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="homestay">
+      <div class="homestay-header">
+        <div>
+          <div class="homestay-title">Zoo Road</div>
+          <div class="homestay-location">2 BHK</div>
+        </div>
+        <div class="homestay-pricing">
+          <div class="price-label">Price :</div>
+          <div class="price-value">₹3,500</div>
+        </div>
+      </div>
+      <div class="photo-strip">
+        <div class="photo-box" onclick="openModal('nadi_zr1.jpg')"><img src="nadi_zr1.jpg" alt="Zoo Road Photo 1"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr2.jpg')"><img src="nadi_zr2.jpg" alt="Zoo Road Photo 2"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr3.jpg')"><img src="nadi_zr3.jpg" alt="Zoo Road Photo 3"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr4.jpg')"><img src="nadi_zr4.jpg" alt="Zoo Road Photo 4"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr5.jpg')"><img src="nadi_zr5.jpg" alt="Zoo Road Photo 5"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr6.jpg')"><img src="nadi_zr6.jpg" alt="Zoo Road Photo 6"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr7.jpg')"><img src="nadi_zr7.jpg" alt="Zoo Road Photo 7"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr8.jpg')"><img src="nadi_zr8.jpg" alt="Zoo Road Photo 8"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr9.jpg')"><img src="nadi_zr9.jpg" alt="Zoo Road Photo 9"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr10.jpg')"><img src="nadi_zr10.jpg" alt="Zoo Road Photo 10"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr11.jpg')"><img src="nadi_zr11.jpg" alt="Zoo Road Photo 11"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr12.jpg')"><img src="nadi_zr12.jpg" alt="Zoo Road Photo 12"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr13.jpg')"><img src="nadi_zr13.jpg" alt="Zoo Road Photo 13"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr14.jpg')"><img src="nadi_zr14.jpg" alt="Zoo Road Photo 14"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr15.jpg')"><img src="nadi_zr15.jpg" alt="Zoo Road Photo 15"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr16.jpg')"><img src="nadi_zr16.jpg" alt="Zoo Road Photo 16"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr17.jpg')"><img src="nadi_zr17.jpg" alt="Zoo Road Photo 17"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr18.jpg')"><img src="nadi_zr18.jpg" alt="Zoo Road Photo 18"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr19.jpg')"><img src="nadi_zr19.jpg" alt="Zoo Road Photo 19"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr20.jpg')"><img src="nadi_zr20.jpg" alt="Zoo Road Photo 20"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr21.jpg')"><img src="nadi_zr21.jpg" alt="Zoo Road Photo 21"></div>
+        <div class="photo-box" onclick="openModal('nadi_zr22.jpg')"><img src="nadi_zr22.jpg" alt="Zoo Road Photo 22"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for image enlargement -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-image" id="modalImage" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    function toggleContact() {
+      const dropdown = document.getElementById('contactDropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('contactDropdown');
+      const button = event.target.closest('.contact-btn');
+      
+      if (!button && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+    function open

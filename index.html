@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nadi Homestay</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+  <style>
+    /* --- Styles unchanged except nav related ones cleaned --- */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background-color: #000;
+    }
+
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeOut 0.8s ease-out 2.5s forwards;
+    }
+
+    .splash-logo img {
+      width: 200px;
+      height: auto;
+      animation: zoomSplash 2.5s ease-in-out forwards;
+    }
+
+    @keyframes zoomSplash {
+      0% {
+        transform: scale(0.2);
+        opacity: 0;
+      }
+      30% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(10);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    header {
+      height: 120px;
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo img {
+      height: 100px;
+      margin-top: 35px;
+      z-index: 1001;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .header-nav {
+      margin-top: 40px;
+      display: flex;
+      gap: 30px;
+      text-align: right;
+    }
+
+    .nav-item {
+      cursor: pointer;
+      color: white;
+      position: relative;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:hover {
+      color: #f2c94c;
+      transform: translateY(-2px);
+    }
+
+    .nav-item strong {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #f2c94c;
+    }
+
+    .contact-details {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 200px;
+      z-index: 1500;
+    }
+
+    .contact-details a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background-image: url('nadi_background.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 3.5em;
+      line-height: 1.2;
+      max-width: 700px;
+      margin: auto;
+      color: white;
+      text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #ffffff 0%, #f2c94c 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+    }
+
+    .hero-logo {
+      width: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      animation: fadeInLogo 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInLogo {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .floating-section {
+      padding: 80px 20px;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+      position: relative;
+      overflow: hidden;
+      opacity: 1;
+      transform: translateY(0);
+      display: flex;
+    }
+
+    .floating-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('nadi_small_bggg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    .floating-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .floating-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .floating-bubble {
+      background: linear-gradient(135deg, rgba(242, 201, 76, 0.9), rgba(255, 255, 255, 0.8));
+      border: 3px solid rgba(242, 201, 76, 1);
+      border-radius: 50%;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      animation: float 6s ease-in-out infinite;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+      z-index: 15;
+    }
+
+    .floating-bubble:hover {
+      transform: translateY(-15px) scale(1.1);
+      background: linear-gradient(135deg, rgba(242, 201, 76, 0.8), rgba(255, 255, 255, 0.2));
+      border-color: #f2c94c;
+    }
+
+    .bubble-title {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @media (max-width: 768px) {
+      .floating-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .floating-bubble {
+        width: 180px;
+        height: 180px;
+      }
+
+      .bubble-title {
+        font-size: 1.4em;
+      }
+
+      header {
+        padding: 0 20px;
+      }
+
+      .header-nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-details {
+        position: fixed;
+        top: 120px;
+        right: 20px;
+        left: 20px;
+        min-width: auto;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <div class="splash-logo">
+      <img src="nadi_homestay_logo.png" alt="Logo" />
+    </div>
+  </div>
+
+  <!-- Header without Services -->
+  <header>
+    <div class="logo">
+      <img src="nadi_homestay_logo.png" alt="Nadi Homestay Logo">
+    </div>
+    <div class="header-nav">
+      <div class="nav-item" onclick="toggleContact()">
+        <strong>Owner's Contact</strong>
+        <div class="contact-details" id="contactInfo">
+          📞 <a href="tel:+918123955728">+91-8123955728</a><br>
+          📧 <a href="mailto:yournadihomestay@gmail.com">yournadihomestay@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <img src="my_logo.png" alt="Hero Logo" class="hero-logo">
+      <h1>YOU DON'T JUST STAY HERE,<br>YOU ENJOY YOUR STAY</h1>
+    </div>
+  </section>
+
+  <!-- Floating Bubbles -->
+  <section class="floating-section">
+    <div class="floating-container">
+      <div class="floating-bubble" onclick="handleBubbleClick('homestays')">
+        <div class="bubble-title">HOMESTAYS</div>
+      </div>
+      <div class="floating-bubble" onclick="handleBubbleClick('hotels')">
+        <div class="bubble-title">HOTELS</div>
+      </div>
+      <div class="floating-bubble" onclick="handleBubbleClick('events')">
+        <div class="bubble-title">EVENTS</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleContact() {
+      const details = document.getElementById('contactInfo');
+      details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function handleBubbleClick(type) {
+  if (type === 'homestays') {
+    window.location.href = 'homestays.html';
+  } else if (type === 'hotels') {
+    window.location.href = 'hotels.html'; // (Create this later if needed)
+  } else if (type === 'events') {
+    window.location.href = 'events.html'; // (Create this later if needed)
+  }
+}
+
+    
+
+    // Close contact info if clicking outside
+    document.addEventListener('click', function(event) {
+      const contactDetails = document.getElementById('contactInfo');
+      const headerNav = document.querySelector('.header-nav');
+      if (!headerNav.contains(event.target)) {
+        if (contactDetails.style.display === 'block') {
+          contactDetails.style.display = 'none';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
